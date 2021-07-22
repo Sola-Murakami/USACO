@@ -10,7 +10,7 @@ def vertex(i, j):
     return i * W + j
 
 
-with open("maze1.in", "r") as f:
+with open("maze1.in") as f:
     W, H = map(int, f.readline().strip().split())
     M = [None for _ in range(2 * H + 1)]
 
