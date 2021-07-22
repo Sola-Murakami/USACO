@@ -1,35 +1,32 @@
 """
-ID: 
+ID: solasky1
 LANG: PYTHON3
 TASK: friday
 """
-
-fin = open('friday.in', 'r')
-fout = open('friday.out', 'w')
+with open('friday.in') as f:
+    n = int(f.readline().strip())
 
 months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 day_of_week = 2
 thirteens = [0 for _ in range(7)]
 
 def leap(year):
-    if year % 400 == 0:
+    if not year % 400:
         return 1
-    if year % 100 == 0:
+    if not year % 100:
         return 0
-    if year % 4 == 0:
+    if not year % 4:
         return 1
     return 0
 
-for year in range(1900, 1900 + int(fin.readline())):
+for year in range(1900, 1900 + n):
     if leap(year):
         months[1] += 1
 
-    month = 0
-    day = 0
+    month, day = 0, 0
 
     for _ in range(365 + leap(year)):
         if day == 12:
-            print(month, day_of_week, year)
             thirteens[day_of_week] += 1
             
         day_of_week += 1
@@ -42,6 +39,6 @@ for year in range(1900, 1900 + int(fin.readline())):
     if leap(year):
         months[1] -= 1
 
-fout.write(' '.join([str(num) for num in thirteens]) + '\n')
-fout.close()
-            
+with open('friday.out', 'w') as f:
+    ans = " ".join([str(num) for num in thirteens])
+    f.write(f'{ans}\n')
