@@ -1,11 +1,10 @@
 """
-ID: solasky1
+ID: 
 LANG: PYTHON3
 TASK: test
 """
-fin = open ('test.in', 'r')
-fout = open ('test.out', 'w')
-x,y = map(int, fin.readline().split())
-sum = x+y
-fout.write (str(sum) + '\n')
-fout.close()
+with open('test.py') as f:
+    x, y = map(int, f.readline().split())
+
+with open('test.py', 'w') as f:
+    f.write('{x + y}\n')
