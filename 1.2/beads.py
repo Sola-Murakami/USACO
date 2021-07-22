@@ -3,60 +3,40 @@ ID:
 LANG: PYTHON3
 TASK: beads
 """
+with open('beads.in') as f:
+    N = int(f.readline().strip())
+    beads = f.readline().strip()
 
-fin = open('beads.in', 'r')
-fout = open('beads.out', 'w')
 
-l = int(fin.readline())
-st = fin.readline().strip('\n')
-mx = 0
+def split(i):
+    left = i
+    while beads[left] == "w":
+        left = (left - 1) % N
+    left_color = beads[left]
 
-if l == 77 and st == 'rwrwrwrwrwrwrwrwrwrwrwrwbwrwbwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwrwr':
-    fout.write('74' + '\n')
-    fout.close()
-elif l == 8 and st == 'rrwwwwbb':
-    fout.write('8' + '\n')
-    fout.close()
-else:    
+    right = i + 1
+    while beads[right] == "w":
+        right = (right + 1) % N
+    right_color = beads[right]
 
-    def rotate(x):
-        if 0 <= x < l:
-            return x
-        elif x == -1:
-            return l - 1
-        return 0
+    left = 1
+    while left < N and (
+            beads[(i - left) % N] == left_color or beads[(i - left) % N] == "w"):
+        left += 1
+    right = 1
+    while right < N and (
+            beads[(i + 1 + right) % N] == right_color or beads[(i + 1 + right) % N] == "w"):
+        right += 1
+    
+    return left + right
 
-    beads = {st[0], 'w'}
-    cycle = True
+top = 0
+for i in range(N - 1):
+    if beads[i] != beads[i + 1]:
+        top = max(top, split(i))
 
-    for let in st:
-        if let not in beads:
-            cycle = False
-            break
+if top == 0 or top == 2 * N:
+    top = N
 
-    if cycle == True:
-        fout.write(str(l) + '\n')
-        fout.close()
-    else:
-        for i in range(l):
-            down, up = i, rotate(i + 1)
-            count = 0
-            
-            beads = {st[down], 'w'}
-            while True:
-                if st[down] not in beads:
-                    break
-                down = rotate(down - 1)
-                count += 1
-
-            beads = {st[up], 'w'}
-            while True:
-                if st[up] not in beads:
-                    break
-                up = rotate(up + 1)
-                count += 1
-
-            mx = max(mx, count)
-
-        fout.write(str(mx) + '\n')
-        fout.close()
+with open("beads.out", "w") as f:
+    f.write(f'{top}\n')
