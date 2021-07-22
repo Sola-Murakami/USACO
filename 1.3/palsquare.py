@@ -1,5 +1,5 @@
 """
-ID: idk
+ID: 
 LANG: PYTHON3
 TASK: palsquare
 """
