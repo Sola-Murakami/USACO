@@ -6,7 +6,7 @@ TASK: ttwo
 
 SIZE = 10
 
-with open("ttwo.in", "r") as f:
+with open("ttwo.in") as f:
     G = [None for _ in range(SIZE)]
     for i in range(SIZE):
         G[i] = list(f.readline().strip())
