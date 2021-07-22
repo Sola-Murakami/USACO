@@ -1,5 +1,5 @@
 """
-ID: solasky1
+ID: 
 TASK: skidesign
 LANG: PYTHON3
 """
