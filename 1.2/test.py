@@ -3,8 +3,8 @@ ID:
 LANG: PYTHON3
 TASK: test
 """
-with open('test.py') as f:
+with open('test.in') as f:
     x, y = map(int, f.readline().split())
 
-with open('test.py', 'w') as f:
-    f.write('{x + y}\n')
+with open('test.out', 'w') as f:
+    f.write(f'{x + y}\n')
