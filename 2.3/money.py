@@ -1,6 +1,6 @@
 """
-ID: solasky1
-LANG: PYTHON2
+ID: 
+LANG: PYTHON3
 TASK: money
 """
 
